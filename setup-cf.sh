@@ -32,7 +32,7 @@ cat > cloudfoundry.yml<<EOF
 # CF settings
 director_uuid = "{{DIRECTOR_UUID}}"
 vip_ip = "{{VIP_IP}}"
-root_domain = "${cf_domain}"
+root_domain = "{{ROOT_DOMAIN}}"
 common_password = "c1oudc0w"
 deployment_name = "cf"
 # Google network settings
@@ -1807,6 +1807,7 @@ sed -i s#{{DIRECTOR_UUID}}#`bosh status --uuid 2>/dev/null`# cloudfoundry.yml
 sed -i s#{{REGION}}#$region# cloudfoundry.yml
 address=`gcloud compute addresses describe cf | grep ^address: | cut -f2 -d' '`
 sed -i s#{{VIP_IP}}#${address}# cloudfoundry.yml
+sed -i s#{{ROOT_DOMAIN}}#${cf_domain}# cloudfoundry.yml
 
 echo "Setting bosh deployment file"
 /usr/local/bin/bosh deployment cloudfoundry.yml

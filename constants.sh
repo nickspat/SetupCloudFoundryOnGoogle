@@ -1,5 +1,5 @@
-
-cf_domain="labs.homedepot.com"
+cf_ip=`gcloud compute addresses describe cf | grep ^address: | cut -f2 -d' '`
+cf_domain="${cf_ip}.xip.io"
 google_project=`gcloud compute project-info describe | grep ^name: | cut -f2 -d' '`
 google_region="us-central1"
 google_zone="us-central1-a"
@@ -19,6 +19,6 @@ cf_firewall_internal="cf-internal"
 google_target_pool="cf-public"
 google_backend_service="cf-public"
 #google_json_key_data="/tmp/cf-bosh.json"
-director_password="depot"
-director_username="home"
+director_password="admin"
+director_username="admin"
 private_key="${HOME}/.ssh/bosh"

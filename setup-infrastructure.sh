@@ -12,7 +12,7 @@ gcloud config set compute/zone ${google_zone}
 
 echo "creating cf static address"
 gcloud -q compute addresses create ${google_address_cf}
-cf_ip=$(gcloud compute addresses describe ${google_address_cf} --format json | jq -r '.address')
+
 
 echo "create cf network and subnets"
 

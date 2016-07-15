@@ -5,9 +5,9 @@
 
 
 ## Setup CloudFoundry  
-On google cloud shell sdk type 
-`gsutil cp gs://hd-labs-cfongcp/automation/oneclick-cf-on-gcp.sh . && chmod 744 ./oneclick-cf-on-gcp.sh && ./oneclick-cf-on-gcp.sh`
+Open google cloud shell (if you are using gcloud command line then make sure you have login and set the project)
+`wget https://gist.github.com/nickspat/77430d2958e6b5a012674edb64dd8ed6/raw/bc2d0ea0d037f0d1d73dd932d4541f1b4f6eae29/oneclick-cf-on-gcp.sh && chmod 744 ./oneclick-cf-on-gcp.sh && ./oneclick-cf-on-gcp.sh`
 
 ## Delete CloudFoundry
-On google cloud shell sdk type 
-`gsutil cp gs://hd-labs-cfongcp/automation/oneclick-delete-all.sh . && chmod 744 ./oneclick-delete-all.sh && ./oneclick-delete-all.sh`
+Open google cloud shell (if you are using gcloud command line then make sure you have login and set the project)
+`wget https://gist.github.com/nickspat/77430d2958e6b5a012674edb64dd8ed6/raw/bc2d0ea0d037f0d1d73dd932d4541f1b4f6eae29/oneclick-delete-all.sh && chmod 744 ./oneclick-delete-all.sh && ./oneclick-delete-all.sh`
