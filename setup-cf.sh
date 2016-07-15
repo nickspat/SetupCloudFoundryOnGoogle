@@ -1824,6 +1824,7 @@ echo "Starting to deploy cloudfoundry"
 /usr/local/bin/bosh deploy
 
 echo "cloudfoundry deployment successful"
-
+echo "Use CF CLI to login ...."
+echo "cf login -a https://api.${cf_domain} -u admin -p c1oudc0w --skip-ssl-validation"
 
 set -e

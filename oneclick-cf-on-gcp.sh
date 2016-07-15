@@ -16,7 +16,6 @@ gcloud compute ssh bosh-bastion --zone ${google_zone} --command "wget https://gi
 
 ssh -t -o StrictHostKeyChecking=no -i ~/.ssh/google_compute_engine `gcloud compute instances describe bosh-bastion --zone ${google_zone} | grep natIP: | cut -f2 -d :` 'wget https://gist.github.com/raw/77430d2958e6b5a012674edb64dd8ed6/setup-cf.sh && chmod 744 ./setup-cf.sh && ./setup-cf.sh'
 
-echo "Use CF CLI to login ...."
-echo "cf login -a https://api.${cf_domain} -u admin -p c1oudc0w --skip-ssl-validation"
+
 
 set -e
