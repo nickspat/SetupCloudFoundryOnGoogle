@@ -11,6 +11,7 @@ chmod 744 ./constants.sh
 source ./constants.sh
 
 
+
 echo "Setting up bosh target"
 /usr/local/bin/bosh target ${director_ip}
 
@@ -1810,6 +1811,10 @@ sed -i s#{{DIRECTOR_UUID}}#`bosh status --uuid 2>/dev/null`# cloudfoundry.yml
 sed -i s#{{REGION}}#$region# cloudfoundry.yml
 address=`gcloud compute addresses describe cf | grep ^address: | cut -f2 -d' '`
 sed -i s#{{VIP_IP}}#${address}# cloudfoundry.yml
+
+cf_ip=`gcloud compute addresses describe cf | grep ^address: | cut -f2 -d' '`
+cf_domain="${cf_ip}.xip.io"
+
 sed -i s#{{ROOT_DOMAIN}}#${cf_domain}# cloudfoundry.yml
 
 echo "Setting bosh deployment file"

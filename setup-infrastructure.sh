@@ -11,10 +11,10 @@ source ./constants.sh
 
 echo "creating cf static address"
 gcloud -q compute addresses create ${google_address_cf}
-
+cf_ip=`gcloud compute addresses describe cf | grep ^address: | cut -f2 -d' '`
+cf_domain="${cf_ip}.xip.io"
 
 echo "create cf network and subnets"
-
 gcloud -q compute networks create ${google_network} --mode custom
 gcloud -q compute networks subnets create ${google_subnetwork} --network ${google_network} --range ${google_subnetwork_range} --region ${google_region} --description "Subnet for BOSH Director and bastion"
 gcloud -q compute networks subnets create ${cf_public_subnetwork} --network ${google_network} --range ${cf_public_subnet_range} --description "Subnet for public CloudFoundry components" --region ${google_region}
