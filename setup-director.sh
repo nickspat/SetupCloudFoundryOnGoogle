@@ -232,7 +232,7 @@ pushd ${deployment_dir}
   trap finish ERR
 
   echo -ne "Waiting for bosh-init to be available.."
-  until /usr/bin/bosh-init -v 2> /dev/null | grep -m 1 "version"; do echo -ne "."; done
+  until /usr/bin/bosh-init -v 2> /dev/null | grep -m 1 "version"; do sleep 2s; echo -ne "."; done
 
   echo "Deploying BOSH Director..."
   /usr/bin/bosh-init deploy ${manifest_filename}
