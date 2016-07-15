@@ -2,6 +2,9 @@
 
 set -e
 
+if [ -f ./constants.sh ]; then
+    rm -rf ./constants.sh
+fi
 wget https://gist.github.com/nickspat/77430d2958e6b5a012674edb64dd8ed6/raw/ff6d2c369b595696f199d67e081a8ddf70e562d8/constants.sh
 chmod 744 ./constants.sh
 source ./constants.sh
@@ -229,7 +232,7 @@ pushd ${deployment_dir}
   trap finish ERR
 
   echo -ne "Waiting for bosh-init to be available.."
-  until /usr/bin/bosh-init -v | grep -m 1 "version"; do echo -ne "."; done
+  until /usr/bin/bosh-init -v 2> /dev/null | grep -m 1 "version"; do echo -ne "."; done
 
   echo "Deploying BOSH Director..."
   /usr/bin/bosh-init deploy ${manifest_filename}
