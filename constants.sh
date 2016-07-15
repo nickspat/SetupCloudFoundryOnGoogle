@@ -1,4 +1,4 @@
-
+google_project=`gcloud compute project-info describe | grep ^name: | cut -f2 -d' '`
 google_region="us-central1"
 google_zone="us-central1-a"
 google_address_cf="cf"
@@ -7,7 +7,6 @@ gcloud config set compute/region ${google_region}
 gcloud config set compute/zone ${google_zone}
 cf_ip=`gcloud compute addresses describe cf | grep ^address: | cut -f2 -d' '`
 cf_domain="${cf_ip}.xip.io"
-google_project=`gcloud compute project-info describe | grep ^name: | cut -f2 -d' '`
 director_ip="10.0.0.6"
 google_network="cf"
 google_subnetwork="bosh-"${google_region}
