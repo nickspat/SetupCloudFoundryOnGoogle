@@ -9,11 +9,6 @@ wget https://gist.githubusercontent.com/raw/77430d2958e6b5a012674edb64dd8ed6/con
 chmod 744 ./constants.sh
 source ./constants.sh
 
-gcloud config set project ${google_project}
-gcloud config set compute/region ${google_region}
-gcloud config set compute/zone ${google_zone}
-
-
 echo "creating cf static address"
 gcloud -q compute addresses create ${google_address_cf}
 
