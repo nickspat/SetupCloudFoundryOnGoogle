@@ -5,8 +5,7 @@ google_address_cf="cf"
 gcloud config set project ${google_project}
 gcloud config set compute/region ${google_region}
 gcloud config set compute/zone ${google_zone}
-cf_ip=`gcloud compute addresses describe cf | grep ^address: | cut -f2 -d' '`
-cf_domain="${cf_ip}.xip.io"
+
 director_ip="10.0.0.6"
 google_network="cf"
 google_subnetwork="bosh-"${google_region}
