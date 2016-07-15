@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-gsutil cp gs://hd-labs-cfongcp/automation/constants.sh .
+wget https://gist.github.com/nickspat/77430d2958e6b5a012674edb64dd8ed6/raw/ff6d2c369b595696f199d67e081a8ddf70e562d8/constants.sh
 chmod 744 ./constants.sh
 source ./constants.sh
 
@@ -32,7 +32,7 @@ gcloud compute firewall-rules create ${cf_firewall_internal} --description "Clou
 
 
 echo "creating bosh bastion server"
-gcloud -q compute instances create bosh-bastion --image-family=ubuntu-1404-lts and --image-project=ubuntu-os-cloud --subnet ${google_subnetwork} --private-network-ip 10.0.0.200 --tags bosh-bastion,bosh-internal --scopes cloud-platform --metadata "startup-script=apt-get update -y ; apt-get upgrade -y ; apt-get install -y build-essential zlibc zlib1g-dev ruby ruby-dev openssl libxslt-dev libxml2-dev libssl-dev libreadline6 libreadline6-dev libyaml-dev libsqlite3-dev sqlite3 ; gem install bosh_cli ; curl -o /usr/bin/bosh-init https://s3.amazonaws.com/bosh-init-artifacts/bosh-init-0.0.94-linux-amd64; chmod +x /usr/bin/bosh-init; curl -o /tmp/cf.tgz https://s3.amazonaws.com/go-cli/releases/v6.19.0/cf-cli_6.19.0_linux_x86-64.tgz; tar -zxvf /tmp/cf.tgz && mv cf /usr/bin/cf && chmod +x /usr/bin/cf"
+gcloud -q compute instances create bosh-bastion --image-family=ubuntu-1404-lts --image-project=ubuntu-os-cloud --subnet ${google_subnetwork} --private-network-ip 10.0.0.200 --tags bosh-bastion,bosh-internal --scopes cloud-platform --metadata "startup-script=apt-get update -y ; apt-get upgrade -y ; apt-get install -y build-essential zlibc zlib1g-dev ruby ruby-dev openssl libxslt-dev libxml2-dev libssl-dev libreadline6 libreadline6-dev libyaml-dev libsqlite3-dev sqlite3 ; gem install bosh_cli ; curl -o /usr/bin/bosh-init https://s3.amazonaws.com/bosh-init-artifacts/bosh-init-0.0.94-linux-amd64; chmod +x /usr/bin/bosh-init; curl -o /tmp/cf.tgz https://s3.amazonaws.com/go-cli/releases/v6.19.0/cf-cli_6.19.0_linux_x86-64.tgz; tar -zxvf /tmp/cf.tgz && mv cf /usr/bin/cf && chmod +x /usr/bin/cf"
 
 echo "creating http-health-checks"
 gcloud -q compute http-health-checks create ${google_backend_service} --description "Cloud Foundry Public Health Check" --timeout "5s" --check-interval "30s" --healthy-threshold "10" --unhealthy-threshold "2" --port 80 --request-path "/info" --host "api.${cf_domain}"
