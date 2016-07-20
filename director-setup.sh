@@ -2,12 +2,12 @@
 
 set -e
 
+source_url="https://github.com/nickspat/setupcfongcp/raw/master"
+
 if [ -f ./constants.sh ]; then
     rm -rf ./constants.sh
 fi
-wget https://gist.githubusercontent.com/raw/77430d2958e6b5a012674edb64dd8ed6/constants.sh
-chmod 744 ./constants.sh
-source ./constants.sh
+wget ${source_url}/constants.sh && chmod 744 ./constants.sh && source ./constants.sh
 
 
 deployment_dir="${PWD}/google-bosh-director"
@@ -40,7 +40,12 @@ fi
 gcloud compute project-info add-metadata --metadata-from-file sshKeys=/tmp/project_keys.pub
 
 cd google-bosh-director
-echo "Creating ${manifest_filename}..."
+echo
+echo "########################################"
+echo "#    Creating ${manifest_filename}...  #" 
+echo "########################################"
+echo
+
 zone=$(curl -s -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/zone)
 zone=${zone##*/}
 region=${zone%-*}
