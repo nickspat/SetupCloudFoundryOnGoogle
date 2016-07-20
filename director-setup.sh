@@ -69,7 +69,7 @@ resource_pools:
     network: private
     stemcell:
       url: https://storage.googleapis.com/bosh-cpi-artifacts/bosh-stemcell-3262.2-google-kvm-ubuntu-trusty-go_agent.tgz
-      sha1: 3bdd94fdb7cf277346e6a4c5e54d10dfd8f2380d 
+      sha1: 31485d0831171a5f9e3d238f298c9fdcdda3c523 
     cloud_properties:
       machine_type: n1-standard-4
       root_disk_size_gb: 40
