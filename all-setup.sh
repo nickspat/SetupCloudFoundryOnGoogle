@@ -20,7 +20,7 @@ gcloud compute ssh bosh-bastion --zone ${google_zone} --command "wget ${source_u
 
 echo "----------Starting to setup Cloud Foundry components ------------------"
 bosh_ip=`gcloud compute instances describe bosh-bastion --zone ${google_zone} | grep natIP: | cut -f2 -d :`
-command="'wget ${source_url}/cf-setup.sh && chmod 744 ./cf-setup.sh && ./cf-setup.sh'"
-ssh -t -o StrictHostKeyChecking=no -i ~/.ssh/google_compute_engine ${bosh_ip} 
+command="wget ${source_url}/cf-setup.sh && chmod 744 ./cf-setup.sh && ./cf-setup.sh"
+ssh -t -o StrictHostKeyChecking=no -i ~/.ssh/google_compute_engine ${bosh_ip} ${command}
 
 set -e
