@@ -13,14 +13,10 @@ bosh_ip=`gcloud compute instances describe bosh-bastion --zone ${google_zone} | 
 command="wget ${source_url}/cf-teardown.sh && chmod 744 ./cf-teardown.sh && ./cf-teardown.sh"
 ssh -t -o StrictHostKeyChecking=no -i ~/.ssh/google_compute_engine ${bosh_ip} ${command}
 
-echo "-------------- Starting to teardown Cloud Foundry infrastructure components ---------------------"
-wget ${source_url}/cf-infra-teardown.sh && chmod 744 ./cf-infra-teardown.sh && ./cf-infra-teardown.sh
-
 echo "-------------- Starting to teardown Bosh Director -----------------"
 gcloud compute ssh bosh-bastion --zone ${google_zone} --command "wget ${source_url}/director-teardown.sh && chmod 744 ./director-teardown.sh && ./director-teardown.sh"
 
-echo "-------------- Starting to teardown Bosh Director infrastructure components ---------------------"
-wget ${source_url}/director-infra-teardown.sh && chmod 744 ./director-infra-teardown.sh && ./director-infra-teardown.sh
+wget ${source_url}/infra-teardown.sh && chmod 744 ./infra-teardown.sh && ./infra-teardown.sh
 
 echo "Successfully deleted bosh director, cloud foundry and GCP components"
 

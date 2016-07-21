@@ -8,11 +8,7 @@ if [ -f ./constants.sh ]; then
 fi
 wget ${source_url}/constants.sh && chmod 744 ./constants.sh && source ./constants.sh
 
-echo "-----------Setting up Infrastructure for BOSH director ----------------"
-wget ${source_url}/director-infra-setup.sh && chmod 744 ./director-infra-setup.sh && ./director-infra-setup.sh
-
-echo "-----------Setting up Infrastructure for Cloud Foundry ----------------"
-wget ${source_url}/cf-infra-setup.sh && chmod 744 ./cf-infra-setup.sh && ./cf-infra-setup.sh
+wget ${source_url}/infra-setup.sh && chmod 744 ./infra-setup.sh && ./infra-setup.sh
 
 echo "-----------Setting up BOSH director ----------------"
 gcloud compute ssh bosh-bastion --zone ${google_zone} --command "wget ${source_url}/director-setup.sh && chmod 744 ./director-setup.sh && ./director-setup.sh"
