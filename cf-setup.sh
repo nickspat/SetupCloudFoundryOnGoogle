@@ -4,8 +4,8 @@
 set -e
 
 source_url="https://github.com/cgrant/setupcfongcp/raw/master"
-google_region="us-central1"
-google_zone=$google_region"-a"
+google_region="us-west1"
+google_zone=$google_region"-b"
 
 
 if [ -f ./constants.sh ]; then
