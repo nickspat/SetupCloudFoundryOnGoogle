@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
-source_url="https://github.com/nickspat/setupcfongcp/raw/master"
+source_url="https://github.com/cgrant/setupcfongcp/raw/master"
+google_region="us-central1"
+google_zone=$google_region"-a"
 
 if [ -f ./constants.sh ]; then
     rm -rf ./constants.sh

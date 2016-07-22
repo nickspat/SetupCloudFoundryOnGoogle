@@ -2,7 +2,10 @@
 
 set -e
 
-source_url="https://github.com/nickspat/setupcfongcp/raw/master"
+source_url="https://github.com/cgrant/setupcfongcp/raw/master"
+google_region="us-central1"
+google_zone=$google_region"-a"
+
 
 if [ -f ./constants.sh ]; then
     rm -rf ./constants.sh
@@ -42,7 +45,7 @@ gcloud compute project-info add-metadata --metadata-from-file sshKeys=/tmp/proje
 cd google-bosh-director
 echo
 echo "########################################"
-echo "#    Creating ${manifest_filename}...  #" 
+echo "#    Creating ${manifest_filename}...  #"
 echo "########################################"
 echo
 
@@ -62,14 +65,14 @@ releases:
     sha1: ff2f4e16e02f66b31c595196052a809100cfd5a8
   - name: bosh-google-cpi
     url: https://storage.googleapis.com/bosh-cpi-artifacts/bosh-google-cpi-20.tgz
-    sha1: 9b4ada4267f1523f5d278e0813eb055e91ea15ed 
+    sha1: 9b4ada4267f1523f5d278e0813eb055e91ea15ed
 
 resource_pools:
   - name: vms
     network: private
     stemcell:
       url: https://storage.googleapis.com/bosh-cpi-artifacts/bosh-stemcell-3262.2-google-kvm-ubuntu-trusty-go_agent.tgz
-      sha1: 31485d0831171a5f9e3d238f298c9fdcdda3c523 
+      sha1: 31485d0831171a5f9e3d238f298c9fdcdda3c523
     cloud_properties:
       machine_type: n1-standard-4
       root_disk_size_gb: 40

@@ -1,6 +1,5 @@
 google_project=`gcloud compute project-info describe | grep ^name: | cut -f2 -d' '`
-google_region="us-central1"
-google_zone="us-central1-a"
+
 google_address_cf="cf"
 gcloud config set project ${google_project}
 gcloud config set compute/region ${google_region}

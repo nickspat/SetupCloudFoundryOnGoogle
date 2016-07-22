@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
-source_url="https://github.com/nickspat/setupcfongcp/raw/master"
+source_url="https://github.com/cgrant/setupcfongcp/raw/master"
+google_region="us-central1"
+google_zone=$google_region"-a"
+
 
 if [ -f ./constants.sh ]; then
     rm -rf ./constants.sh
@@ -30,12 +33,12 @@ echo "creating target-pools"
 gcloud -q compute target-pools create ${google_target_pool} --description "Cloud Foundry Public Target Pool" --region=${google_region} --health-check ${google_backend_service}
 
 echo "creating forwarding-rules"
-gcloud compute forwarding-rules create cf-http --description "Cloud Foundry HTTP Traffic" --ip-protocol TCP --ports=80 --target-pool ${google_target_pool} --address ${cf_ip} --region ${google_region} 
+gcloud compute forwarding-rules create cf-http --description "Cloud Foundry HTTP Traffic" --ip-protocol TCP --ports=80 --target-pool ${google_target_pool} --address ${cf_ip} --region ${google_region}
 
-gcloud compute forwarding-rules create cf-https --description "Cloud Foundry HTTPS Traffic" --ip-protocol TCP --ports=443 --target-pool ${google_target_pool} --address ${cf_ip} --region ${google_region} 
+gcloud compute forwarding-rules create cf-https --description "Cloud Foundry HTTPS Traffic" --ip-protocol TCP --ports=443 --target-pool ${google_target_pool} --address ${cf_ip} --region ${google_region}
 
-gcloud compute forwarding-rules create cf-ssh --description "Cloud Foundry SSH Traffic" --ip-protocol TCP --ports=2222 --target-pool ${google_target_pool} --address ${cf_ip} --region ${google_region} 
+gcloud compute forwarding-rules create cf-ssh --description "Cloud Foundry SSH Traffic" --ip-protocol TCP --ports=2222 --target-pool ${google_target_pool} --address ${cf_ip} --region ${google_region}
 
-gcloud compute forwarding-rules create cf-wss --description "Cloud Foundry WSS Traffic" --ip-protocol TCP --ports=4443 --target-pool ${google_target_pool} --address ${cf_ip} --region ${google_region} 
+gcloud compute forwarding-rules create cf-wss --description "Cloud Foundry WSS Traffic" --ip-protocol TCP --ports=4443 --target-pool ${google_target_pool} --address ${cf_ip} --region ${google_region}
 
 set -e

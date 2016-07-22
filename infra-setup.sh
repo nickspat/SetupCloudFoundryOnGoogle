@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
-source_url="https://github.com/nickspat/setupcfongcp/raw/master"
+source_url="https://github.com/cgrant/setupcfongcp/raw/master"
+google_region="us-central1"
+google_zone=$google_region"-a"
+
 
 echo "-----------Setting up Infrastructure for BOSH director ----------------"
 wget ${source_url}/director-infra-setup.sh && chmod 744 ./director-infra-setup.sh && ./director-infra-setup.sh
