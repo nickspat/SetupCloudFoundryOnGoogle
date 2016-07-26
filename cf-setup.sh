@@ -1,8 +1,4 @@
 #!/bin/bash
-
-
-
-
 source ./constants.sh
 
 echo "Setting up bosh target"
