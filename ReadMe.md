@@ -2,6 +2,7 @@
 
 ## Pre-requisite
  * Admin/Project wide account on Google Cloud Project
+ * Quota limits enhanced 
 
 From [Google Cloud Shell](https://cloud.google.com/shell/docs/)
 
