@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-./constants.sh
+source ./constants.sh
 
 echo "create cf network and subnets"
 gcloud -q compute networks create ${google_network} --mode custom
