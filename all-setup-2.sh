@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+chmod 744 ./*.sh 
 source ./constants.sh
 
 
