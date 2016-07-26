@@ -10,11 +10,9 @@ From (Google Cloud Shell)[https://cloud.google.com/shell/docs/]
 ### Setup
 
 ```
-git clone https://github.com/cgrant/setupcfongcp.git
-
-
-
-./setupcfongcp/all-setup.sh
+$ git clone https://github.com/cgrant/setupcfongcp.git
+$ cd setupcfongcp
+$ ./cloud-shell.sh
 ```
 
 old
