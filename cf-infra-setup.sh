@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 source ./constants.sh
 
@@ -32,5 +31,3 @@ gcloud compute forwarding-rules create cf-https --description "Cloud Foundry HTT
 gcloud compute forwarding-rules create cf-ssh --description "Cloud Foundry SSH Traffic" --ip-protocol TCP --ports=2222 --target-pool ${google_target_pool} --address ${cf_ip} --region ${google_region}
 
 gcloud compute forwarding-rules create cf-wss --description "Cloud Foundry WSS Traffic" --ip-protocol TCP --ports=4443 --target-pool ${google_target_pool} --address ${cf_ip} --region ${google_region}
-
-set -e
