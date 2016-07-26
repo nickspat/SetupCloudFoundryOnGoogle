@@ -7,8 +7,16 @@ command="cd ./setupfiles && ./cf-teardown.sh"
 ssh -t -o StrictHostKeyChecking=no -i ~/.ssh/google_compute_engine ${bosh_ip} ${command}
 
 echo "-------------- Starting to teardown Bosh Director -----------------"
-ssh bosh-bastion ./director-teardown.sh
+gcloud compute ssh bosh-bastion --zone ${google_zone} --command "wget ${source_url}/director-setup.sh && chmod 744 ./director-teardown.sh && ./director-teardown.sh"
 
-./infra-teardown.sh
+
+
+echo "-------------- Starting to teardown Cloud Foundry infrastructure components ---------------------"
+ ./cf-infra-teardown.sh
+
+echo "-------------- Starting to teardown Bosh Director infrastructure components ---------------------"
+./director-infra-teardown.sh
+
+
 
 echo "Successfully deleted bosh director, cloud foundry and GCP components"
