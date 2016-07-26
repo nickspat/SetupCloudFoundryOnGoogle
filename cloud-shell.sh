@@ -12,4 +12,4 @@ echo "-----------Setting up Infrastructure for BOSH director ----------------"
 
 gcloud compute copy-files ../setupfiles.tar.gz bosh-bastion:~/ --zone us-west1-b
 
-gcloud compute ssh bosh-bastion --zone ${google_zone} --command "mkdir -p ./setupfiles && tar -xvzf setupfiles.tar.gz -C ./setupfiles && ./setupfiles/bastion-script.sh"
+gcloud compute ssh bosh-bastion --zone ${google_zone} --command "mkdir -p ./setupfiles && tar -xvzf setupfiles.tar.gz -C ./setupfiles && chmod 755 ./setupfiles/*.sh && ./setupfiles/bastion-script.sh"
