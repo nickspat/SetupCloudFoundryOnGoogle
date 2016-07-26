@@ -1,15 +1,5 @@
 #!/usr/bin/env bash
-set -e
-
-source_url="https://github.com/cgrant/setupcfongcp/raw/master"
-google_region="us-west1"
-google_zone=$google_region"-b"
-
-
-if [ -f ./constants.sh ]; then
-    rm -rf ./constants.sh
-fi
-wget ${source_url}/constants.sh && chmod 744 ./constants.sh && source ./constants.sh
+source ./constants.sh
 
 echo "Deleting forwarding-rules"
 gcloud -q compute forwarding-rules delete cf-http --region ${google_region}
@@ -31,5 +21,3 @@ gcloud -q compute networks subnets delete ${cf_public_subnetwork} --region ${goo
 
 echo "Deleting addresses"
 gcloud -q compute addresses delete ${google_address_cf} --region ${google_region}
-
-set -e
