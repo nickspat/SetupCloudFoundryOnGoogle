@@ -9,8 +9,8 @@ cf_ip=`gcloud compute addresses describe cf | grep ^address: | cut -f2 -d' '`
 cf_domain="${cf_ip}.xip.io"
 
 echo "creating subnets for cloud foundry"
-gcloud -q compute networks subnets create ${cf_public_subnetwork} --network ${google_network} --range ${cf_public_subnet_range} --description "Subnet for public CloudFoundry components" --region ${google_region}
-gcloud -q compute networks subnets create ${cf_private_subnetwork} --network ${google_network} --range ${cf_private_subnet_range} --description "Subnet for private CloudFoundry components" --region ${google_region}
+gcloud -q compute networks subnets create ${cf_public_subnetwork} --network ${google_network} --range ${cf_public_subnet_range}  --region ${google_region}
+gcloud -q compute networks subnets create ${cf_private_subnetwork} --network ${google_network} --range ${cf_private_subnet_range}  --region ${google_region}
 
 echo "creating firewall-rules cf-public"
 gcloud compute firewall-rules create ${cf_firewall_public} --description "Cloud Foundry Public Traffic" --network ${google_network} --target-tags ${cf_firewall_public} --allow tcp:80,tcp:443,tcp:2222,tcp:4443
