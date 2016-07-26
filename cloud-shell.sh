@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 source ./constants.sh
 tar -cvzf ../setupfiles.tar.gz ./
