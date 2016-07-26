@@ -7,7 +7,7 @@ command="cd ./setupfiles && ./cf-teardown.sh"
 ssh -t -o StrictHostKeyChecking=no -i ~/.ssh/google_compute_engine ${bosh_ip} ${command}
 
 echo "-------------- Starting to teardown Bosh Director -----------------"
-gcloud compute ssh bosh-bastion --zone ${google_zone} --command "wget ${source_url}/director-setup.sh && chmod 744 ./director-teardown.sh && ./director-teardown.sh"
+gcloud compute ssh bosh-bastion --zone ${google_zone} --command "cd ./setupfiles && ./director-teardown.sh"
 
 
 
