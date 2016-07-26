@@ -1,16 +1,22 @@
 #!/usr/bin/env bash
 set -e
 
-source_url="https://github.com/cgrant/setupcfongcp/raw/master"
+
+tar -cvzf setupfiles.tar.gz ./
+
+gcloud compute copy-files setupfiles.tar.gz bosh-bastion:~/ --zone us-west1-b
+tar -xvzf deployfiles.tar.gz
+
+
 google_region="us-west1"
 google_zone=$google_region"-b"
+gcloud compute ssh bosh-bastion --zone ${google_zone} --command "echo"
+gcloud compute ssh bosh-bastion --zone ${google_zone} --command "tmux -c './setupfiles/all-setup.sh'"
 
-if [ -f ./constants.sh ]; then
-    rm -rf ./constants.sh
-fi
-wget ${source_url}/constants.sh && chmod 744 ./constants.sh && source ./constants.sh
 
-wget ${source_url}/infra-setup.sh && chmod 744 ./infra-setup.sh && ./infra-setup.sh
+
+
+./infra-setup.sh
 
 echo "-----------Setting up BOSH director ----------------"
 gcloud compute ssh bosh-bastion --zone ${google_zone} --command "wget ${source_url}/director-setup.sh && chmod 744 ./director-setup.sh && ./director-setup.sh"

@@ -10,6 +10,15 @@ From (Google Cloud Shell)[https://cloud.google.com/shell/docs/]
 ### Setup
 
 ```
+git clone https://github.com/cgrant/setupcfongcp.git
+
+
+
+./setupcfongcp/all-setup.sh
+```
+
+old
+```
 $ curl -o all-setup.sh https://raw.githubusercontent.com/nickspat/setupcfongcp/master/all-setup.sh && . ./all-setup.sh
 ```
 

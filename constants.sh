@@ -1,3 +1,6 @@
+google_region="us-west1"
+google_zone=$google_region"-b"
+
 google_project=`gcloud compute project-info describe | grep ^name: | cut -f2 -d' '`
 
 google_address_cf="cf"
@@ -22,4 +25,4 @@ google_backend_service="cf-public"
 #google_json_key_data="/tmp/cf-bosh.json"
 director_password="admin"
 director_username="admin"
-private_key="${HOME}/.ssh/bosh"
+private_key="~/.ssh/bosh"
