@@ -2,15 +2,7 @@
 
 set -e
 
-source_url="https://github.com/cgrant/setupcfongcp/raw/master"
-google_region="us-west1"
-google_zone=$google_region"-b"
-
-
-if [ -f ./constants.sh ]; then
-    rm -rf ./constants.sh
-fi
-wget ${source_url}/constants.sh && chmod 744 ./constants.sh && source ./constants.sh
+source ./constants.sh
 
 
 deployment_dir="${PWD}/google-bosh-director"
