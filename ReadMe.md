@@ -3,7 +3,7 @@
 ## Pre-requisite
  * Admin/Project wide account on Google Cloud Project
 
-From (Google Cloud Shell)[https://cloud.google.com/shell/docs/]
+From [Google Cloud Shell](https://cloud.google.com/shell/docs/)
 
 ## Everything in one shot  
 
