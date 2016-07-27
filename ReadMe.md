@@ -1,6 +1,7 @@
 # Create and Setup Cloudfoundry on Google compute engine
 
 ## Pre-requisite
+* Enable APIs
  * Admin/Project wide account on Google Cloud Project
  * Quota limits enhanced
 
