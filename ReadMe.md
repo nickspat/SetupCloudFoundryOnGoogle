@@ -2,7 +2,7 @@
 
 ## Pre-requisite
  * Admin/Project wide account on Google Cloud Project
- * Quota limits enhanced 
+ * Quota limits enhanced
 
 From [Google Cloud Shell](https://cloud.google.com/shell/docs/)
 
@@ -25,3 +25,8 @@ There are 2 spots where you'll need to interact. First is during `bosh target` w
 
 
 ### Cleanup
+
+
+```
+$ ./all-setup.sh
+```
