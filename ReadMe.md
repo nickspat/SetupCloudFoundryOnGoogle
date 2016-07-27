@@ -28,5 +28,5 @@ There are 2 spots where you'll need to interact. First is during `bosh target` w
 
 
 ```
-$ ./all-setup.sh
+$ ./all-teardown.sh
 ```
