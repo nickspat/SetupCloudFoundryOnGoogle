@@ -1,5 +1,7 @@
 # Create and Setup Cloudfoundry on Google compute engine
 
+![](timelapse-setup.gif)
+
 ## Pre-requisite
 * Enable APIs
  * Admin/Project wide account on Google Cloud Project
