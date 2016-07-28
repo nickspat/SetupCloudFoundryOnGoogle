@@ -7,7 +7,7 @@ These scripts were created for a springone conf demo and are designed to provide
 __NOTE:__ these scripts are not intended for a production deployment.
  
 
-## Pre-requisite
+## Prerequisite
 
 * Admin level access on a Google Cloud Project
 	- It's recommended that you use a separate project just for this work
