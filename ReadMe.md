@@ -2,7 +2,7 @@
 
 ![](timelapse-setup.gif)
 
-These scripts are designed to provide an easy bootstrap for exploring Cloud Foundry on Google Cloud Platform. The work here attempts to follow [the instructions](https://github.com/cloudfoundry-incubator/bosh-google-cpi-release/blob/master/docs/bosh/README.md) on the Cloud Foundry Incubator, [Bosh Google CPI](https://github.com/cloudfoundry-incubator/bosh-google-cpi-release) site
+These scripts were created for a springone conf demo and are designed to provide an easy bootstrap for exploring Cloud Foundry on Google Cloud Platform. The work here attempts to follow [the instructions](https://github.com/cloudfoundry-incubator/bosh-google-cpi-release/blob/master/docs/bosh/README.md) on the Cloud Foundry Incubator, [Bosh Google CPI](https://github.com/cloudfoundry-incubator/bosh-google-cpi-release) site. Special callout to [@nickspat](https://github.com/nickspat/setupcfongcp) for his help crafting all this. 
 
 __NOTE:__ these scripts are not intended for a production deployment.
  
