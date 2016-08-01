@@ -33,7 +33,7 @@ From Cloud Shell, download the code, change to the directory and execute the set
 
 ```
 $ git clone https://github.com/homedepot/SetupCloudFoundryOnGoogle.git
-$ cd setupcfongcp
+$ cd SetupCloudFoundryOnGoogle
 $ ./all-setup.sh
 ```
 
