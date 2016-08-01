@@ -22,7 +22,7 @@ Note: The first run on a new project will probably fail as new project keys need
 
 ## One Step Setup
 
-This script is designed to run from the [Google Cloud Shell](https://cloud.google.com/shell/docs/). Once downloaded the constants file and manifests can be modified to meed your needs.
+This script is designed to run from the [Google Cloud Shell](https://cloud.google.com/shell/docs/). Once downloaded the constants file and manifests can be modified to meet your needs.
 
 Manifest: You may choose to modify the manifest which is currently in the ``cf-setup.sh`` script. You may need to modify the stemcell version or sha to match [published versions](https://github.com/cloudfoundry-incubator/bosh-google-cpi-release). Alternatively you can update initial server counts to fit within the default project quota
 
