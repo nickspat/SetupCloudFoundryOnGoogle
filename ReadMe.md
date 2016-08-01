@@ -32,7 +32,7 @@ Manifest: You may choose to modify the manifest which is currently in the ``cf-s
 From Cloud Shell, download the code, change to the directory and execute the setup script
 
 ```
-$ git clone https://github.com/cgrant/setupcfongcp.git
+$ git clone https://github.com/homedepot/SetupCloudFoundryOnGoogle.git
 $ cd setupcfongcp
 $ ./all-setup.sh
 ```
@@ -53,7 +53,7 @@ The entire setup process will take about an hour
 Again this should be run from the cloud shell. I would suggest that you open a new shell, or just ensure you're in the shell in the root dir.
 
 ```
-$ cd setupcfongcp
+$ cd SetupCloudFoundryOnGoogle
 $ ./all-teardown.sh
 ```
 
