@@ -5,7 +5,7 @@ echo "Setting up bosh target"
 /usr/local/bin/bosh target ${director_ip}
 
 echo "Uploading stemcell"
-/usr/local/bin/bosh upload stemcell https://storage.googleapis.com/bosh-cpi-artifacts/bosh-stemcell-3262.7-google-kvm-ubuntu-trusty-go_agent.tgz
+/usr/local/bin/bosh upload stemcell https://storage.googleapis.com/bosh-cpi-artifacts/light-bosh-stemcell-3262.7-google-kvm-ubuntu-trusty-go_agent.tgz
 
 echo "Uploading release"
 /usr/local/bin/bosh upload release https://bosh.io/d/github.com/cloudfoundry/cf-mysql-release?v=23
