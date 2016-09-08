@@ -5,7 +5,7 @@ echo "Setting up bosh target"
 /usr/local/bin/bosh target ${director_ip}
 
 echo "Uploading stemcell"
-/usr/local/bin/bosh upload stemcell https://storage.googleapis.com/bosh-cpi-artifacts/bosh-stemcell-3262.2-google-kvm-ubuntu-trusty-go_agent.tgz
+/usr/local/bin/bosh upload stemcell https://storage.googleapis.com/bosh-cpi-artifacts/bosh-stemcell-3262.7-google-kvm-ubuntu-trusty-go_agent.tgz
 
 echo "Uploading release"
 /usr/local/bin/bosh upload release https://bosh.io/d/github.com/cloudfoundry/cf-mysql-release?v=23
@@ -25,11 +25,12 @@ cat > cloudfoundry.yml<<EOF
 # CF settings
 director_uuid = "{{DIRECTOR_UUID}}"
 vip_ip = "{{VIP_IP}}"
-root_domain = "{{ROOT_DOMAIN}}"
+root_domain = "#{vip_ip}.xip.io"
 common_password = "c1oudc0w"
 deployment_name = "cf"
 # Google network settings
 google_region = "{{REGION}}"
+google_zone = "{{ZONE}}"
 network = "cf"
 public_subnetwork = "cf-public-#{google_region}"
 private_subnetwork = "cf-private-#{google_region}"
@@ -96,6 +97,7 @@ compilation:
   network: private
   reuse_compilation_vms: true
   cloud_properties:
+    zone: <%= google_zone%>
     machine_type: n1-standard-8
     root_disk_size_gb: 100
     root_disk_type: pd-ssd
@@ -115,6 +117,7 @@ networks:
     - range: 10.200.0.0/16
       gateway: 10.200.0.1
       cloud_properties:
+        zone: <%= google_zone%>
         network_name: <%= network%>
         subnetwork_name: <%= public_subnetwork%>
         ephemeral_external_ip: true
@@ -129,6 +132,7 @@ networks:
     - range: 192.168.0.0/16
       gateway: 192.168.0.1
       cloud_properties:
+        zone: <%= google_zone%>
         network_name: <%= network%>
         subnetwork_name: <%= private_subnetwork%>
         ephemeral_external_ip: true
@@ -146,6 +150,7 @@ resource_pools:
       name: bosh-google-kvm-ubuntu-trusty-go_agent
       version: latest
     cloud_properties:
+      zone: <%= google_zone%>
       machine_type: n1-standard-4
       root_disk_size_gb: 20
       root_disk_type: pd-standard
@@ -156,6 +161,7 @@ resource_pools:
       name: bosh-google-kvm-ubuntu-trusty-go_agent
       version: latest
     cloud_properties:
+      zone: <%= google_zone%>
       machine_type: n1-standard-4
       root_disk_size_gb: 20
       root_disk_type: pd-standard
@@ -167,6 +173,7 @@ resource_pools:
       name: bosh-google-kvm-ubuntu-trusty-go_agent
       version: latest
     cloud_properties:
+      zone: <%= google_zone%>
       machine_type: n1-highmem-8
       root_disk_size_gb: 100
       root_disk_type: pd-standard
@@ -1793,14 +1800,13 @@ properties:
       CF_CLIENT_SECRET: "<%= common_password %>"
       CF_LOGIN_SERVER_URL: https://login.<%= root_domain %>
       CF_UAA_SERVER_URL: https://uaa.<%= root_domain %>
-
 EOF
 
 sed -i s#{{DIRECTOR_UUID}}#`bosh status --uuid 2>/dev/null`# cloudfoundry.yml
 sed -i s#{{REGION}}#$region# cloudfoundry.yml
 address=`gcloud compute addresses describe cf | grep ^address: | cut -f2 -d' '`
 sed -i s#{{VIP_IP}}#${address}# cloudfoundry.yml
-
+sed -i s#{{ZONE}}#zone# cloudfoundry.yml
 cf_ip=`gcloud compute addresses describe cf | grep ^address: | cut -f2 -d' '`
 cf_domain="${cf_ip}.xip.io"
 
