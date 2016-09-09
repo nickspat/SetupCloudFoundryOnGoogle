@@ -53,19 +53,20 @@ name: bosh
 
 releases:
   - name: bosh
-    url: https://bosh.io/d/github.com/cloudfoundry/bosh?v=257.9
-    sha1: 3d6168823f5a8aa6b7427429bc727103e15e27af
+    url: https://bosh.io/d/github.com/cloudfoundry/bosh?v=257.3
+    sha1: e4442afcc64123e11f2b33cc2be799a0b59207d0
   - name: bosh-google-cpi
-    url: https://storage.googleapis.com/bosh-cpi-artifacts/bosh-google-cpi-25.2.1.tgz
-    sha1: 7dde4c0ea5d49ea681fd04c2d0595afb3660fab9
+    url: https://storage.googleapis.com/bosh-cpi-artifacts/bosh-google-cpi-25.1.0.tgz
+    sha1: f99dff6860731921282dd1bcd097a74beaeb72a4
 
 resource_pools:
   - name: vms
     network: private
     stemcell:
-      url: https://storage.googleapis.com/bosh-cpi-artifacts/light-bosh-stemcell-3262.7-google-kvm-ubuntu-trusty-go_agent.tgz
-      sha1: eccdb9f590f462f84083fe04894ddf27e886b53d
+      url: https://storage.googleapis.com/bosh-cpi-artifacts/light-bosh-stemcell-3262.5-google-kvm-ubuntu-trusty-go_agent.tgz
+      sha1: b7ed64f1a929b9a8e906ad5faaed73134dc68c53
     cloud_properties:
+      zone: {{ZONE}}
       machine_type: n1-standard-4
       root_disk_size_gb: 40
       root_disk_type: pd-standard
@@ -165,8 +166,8 @@ jobs:
           provider: local
           local:
             users:
-              - name: ${director_username}
-                password: ${director_password}
+              - name: admin
+                password: admin
               - name: hm
                 password: hm-password
       hm:
@@ -177,7 +178,6 @@ jobs:
 
       google: &google_properties
         project: {{PROJECT_ID}}
-        default_zone: {{ZONE}}
 
       agent:
         mbus: nats://nats:nats-password@10.0.0.6:4222
@@ -206,13 +206,9 @@ cloud_provider:
 
   properties:
     google: *google_properties
-    agent:
-      mbus: https://mbus:mbus-password@0.0.0.0:6868
-      blobstore:
-        provider: local
-        options:
-          blobstore_path: /var/vcap/micro_bosh/data/cache
-      ntp: *ntp
+    agent: {mbus: "https://mbus:mbus-password@0.0.0.0:6868"}
+    blobstore: {provider: local, path: /var/vcap/micro_bosh/data/cache}
+    ntp: *ntp
 EOF
 
 sed -i s#{{PROJECT_ID}}#`curl -s -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/project/project-id`# ${manifest_filename}

@@ -5,7 +5,7 @@ echo "Setting up bosh target"
 /usr/local/bin/bosh target ${director_ip}
 
 echo "Uploading stemcell"
-/usr/local/bin/bosh upload stemcell https://storage.googleapis.com/bosh-cpi-artifacts/light-bosh-stemcell-3262.7-google-kvm-ubuntu-trusty-go_agent.tgz
+/usr/local/bin/bosh upload stemcell https://storage.googleapis.com/bosh-cpi-artifacts/light-bosh-stemcell-3262.5-google-kvm-ubuntu-trusty-go_agent.tgz
 
 echo "Uploading release"
 /usr/local/bin/bosh upload release https://bosh.io/d/github.com/cloudfoundry/cf-mysql-release?v=23
@@ -1806,7 +1806,7 @@ sed -i s#{{DIRECTOR_UUID}}#`bosh status --uuid 2>/dev/null`# cloudfoundry.yml
 sed -i s#{{REGION}}#$region# cloudfoundry.yml
 address=`gcloud compute addresses describe cf | grep ^address: | cut -f2 -d' '`
 sed -i s#{{VIP_IP}}#${address}# cloudfoundry.yml
-sed -i s#{{ZONE}}#zone# cloudfoundry.yml
+sed -i s#{{ZONE}}#$zone# cloudfoundry.yml
 cf_ip=`gcloud compute addresses describe cf | grep ^address: | cut -f2 -d' '`
 cf_domain="${cf_ip}.xip.io"
 
